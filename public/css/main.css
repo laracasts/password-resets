@@ -21,10 +21,10 @@ h1, h2, h3, h4, h5 { color: #222; }
     width: 700px;
     margin: auto;
     padding: 2em 2em;
+    overflow: hidden;
 }
 
 .container {
-    min-height: 400px;
     outline: 1px solid #c5c5c5;
 }
 
