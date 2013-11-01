@@ -9,7 +9,7 @@ class PasswordResetsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('password_resets.create');
+		return View::make('password_resets.create');
 	}
 
 	/**
@@ -19,36 +19,36 @@ class PasswordResetsController extends BaseController {
 	 */
 	public function store()
 	{
-        Password::remind(['email' => Input::get('email')], function($message)
-        {
-            $message->subject('Your Password Reminder');
-        });
+		Password::remind(['email' => Input::get('email')], function($message)
+		{
+			$message->subject('Your Password Reminder');
+		});
 
-        $status = Session::has('error') ? 'Could not find user with that email address.' : 'Please check your email!';
+		$status = Session::has('error') ? 'Could not find user with that email address.' : 'Please check your email!';
 
-        return Redirect::route('password_resets.create')->withStatus($status);
-    }
+		return Redirect::route('password_resets.create')->withStatus($status);
+	}
 
-    public function reset($token)
-    {
-        return View::make('password_resets.reset')->withToken($token);
-    }
+	public function reset($token)
+	{
+		return View::make('password_resets.reset')->withToken($token);
+	}
 
-    public function postReset()
-    {
-        $creds = [
-            'email' => Input::get('email'),
-            'password' => Input::get('password'),
-            'password_confirmation' => Input::get('password_confirmation')
-        ];
+	public function postReset()
+	{
+		$creds = [
+			'email' => Input::get('email'),
+			'password' => Input::get('password'),
+			'password_confirmation' => Input::get('password_confirmation')
+		];
 
-        return Password::reset($creds, function($user, $password)
-        {
-            $user->password = Hash::make($password);
-            $user->save();
+		return Password::reset($creds, function($user, $password)
+		{
+			$user->password = Hash::make($password);
+			$user->save();
 
-            return Redirect::route('sessions.create');
-        });
-    }
+			return Redirect::route('sessions.create');
+		});
+	}
 
 }
