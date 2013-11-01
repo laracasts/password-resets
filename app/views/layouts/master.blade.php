@@ -9,10 +9,6 @@
         @include ('layouts.partials.nav')
 
         <div class="container wrap">
-            <aside class="sidebar">
-                <h2 class="heading-top">Sidebar</h2>
-            </aside>
-
             <div class="content">
                 @yield('content')
             </div>

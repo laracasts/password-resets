@@ -60,7 +60,3 @@ nav a { color: white; }
 
 /* FOOTER */
 footer h5 { margin: 0; color: white; }
-
-
-.sidebar { float: left; width: 25%; }
-.content { float: right; width: 75%;  }
